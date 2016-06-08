@@ -27,13 +27,13 @@
 					this.page.url        = "#prc.canoncialURL#";
 					this.page.identifier = "#prc.disqusIdentifier#";
 				</cfif>
-				<cfif disqusLoginTokenExists && isSSOEnabled>
+				<cfif disqusLoginTokenExists && isSSOEnabled == 1>
 					this.page.remote_auth_s3 = "#prc.disqusLoginToken#";
 					this.page.api_key        = "#disqusAPIKey#";
 				</cfif>
 			};
 		</cfif>
-		<cfif isSSOEnabled>
+		<cfif isSSOEnabled == 1>
 		 	this.sso = {
 				  name   : "#disqusSSOSiteName#"
 				, button : "#event.buildLink( assetId = disqusSSOButton )#"
