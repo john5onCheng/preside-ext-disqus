@@ -8,10 +8,13 @@
 	disqusSSOSiteName      = getSystemSetting( "disqus", "sso_site_name" , '' );
 	disqusSSOButton        = getSystemSetting( "disqus", "sso_button"    , '' );
 	disqusSSOIcon          = getSystemSetting( "disqus", "sso_icon"      , '' );
-	disqusSSOLoginURL      = getSystemSetting( "disqus", "sso_url"       , event.buildLink( page   = 'login' ) );
-	disqusSSOLogoutURL     = getSystemSetting( "disqus", "sso_logout"    , event.buildLink( linkTo = 'login.logout' ) );
+	disqusSSOLoginURL      = getSystemSetting( "disqus", "sso_url"       , '' );
+	disqusSSOLogoutURL     = getSystemSetting( "disqus", "sso_logout"    , '' );
 	disqusSSOWidth         = getSystemSetting( "disqus", "sso_width"     , '800' );
 	disqusSSOHeight        = getSystemSetting( "disqus", "sso_height"    , '400' );
+
+	disqusSSOLoginURL      = !isEmpty( disqusSSOLoginURL )  ? event.buildLink( id = disqusSSOLoginURL  ) : event.buildLink( page   = 'login' );
+	disqusSSOLogoutURL     = !isEmpty( disqusSSOLogoutURL ) ? event.buildLink( id = disqusSSOLogoutURL ) : event.buildLink( linkTo = 'login.logout' );
 </cfscript>
 <cfoutput>
 <cfif args.showDisqus>
