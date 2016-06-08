@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form i18nBaseUri="system-config.disqus:">
+	<tab id="default">
+		<fieldset id="default">
+			<field name="end_point"   control="textinput" required="true"  default="http://disqus.com/api/3.0/" />
+			<field name="short_name"  control="textinput" required="true"  default="" />
+			<field name="api_key"     control="textinput" required="true"  default="" />
+			<field name="secret_key"  control="textinput" required="false" default="" />
+		</fieldset>
+		<fieldset id="sso">
+			<field name="enable_sso"        control="yesnoswitch"   default="false" />
+			<field name="sso_site_name"     control="textinput"     default=""    />
+			<field name="sso_button"        control="assetpicker"   />
+			<field name="sso_icon"          control="assetpicker"   />
+			<field name="sso_url"           control="linkpicker"    />
+			<field name="sso_logout"        control="linkpicker"    />
+			<field name="sso_width"         control="textinput"     default="800" />
+			<field name="sso_height"        control="textinput"     default="400" />
+		</fieldset>
+	</tab>
+</form>
