@@ -1,4 +1,4 @@
-# preside-ext-disqus
+#Preside Extension - Disqus
 
 #Disqus extension basic setup ( Assume you have done setup Disqus account and the app )
 1.) Setup Disqus API setting in Preside admin > Setting > Disqus API
@@ -6,7 +6,7 @@ Fill in the required field. To get the public key you need to add remote domain 
 https://disqus.com/api/applications/
 
 2.) Add this line to your view
-#renderView( view = 'disqus/index', args = { showDisqus = showDisqus ?: false } )#
+renderView( view = 'disqus/index', args = { showDisqus = showDisqus ?: false } )
 showDisqus is an argument option for you to turn it on / off for particular page
 
 3.) Add this line to your page handler
