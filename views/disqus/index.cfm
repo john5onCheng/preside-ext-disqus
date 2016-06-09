@@ -31,19 +31,20 @@
 					this.page.remote_auth_s3 = "#prc.disqusLoginToken#";
 					this.page.api_key        = "#disqusAPIKey#";
 				</cfif>
+				<cfif isSSOEnabled == 1>
+				 	this.sso = {
+						  name   : "#disqusSSOSiteName#"
+						, button : "#event.buildLink( assetId = disqusSSOButton )#"
+						, icon   : "#event.buildLink( assetId = disqusSSOIcon )#"
+						, url    : "#disqusSSOLoginURL#"
+						, logout : "#disqusSSOLogoutURL#"
+						, width  : "#disqusSSOWidth#"
+						, height : "#disqusSSOHeight#"
+					};
+				</cfif>
 			};
 		</cfif>
-		<cfif isSSOEnabled == 1>
-		 	this.sso = {
-				  name   : "#disqusSSOSiteName#"
-				, button : "#event.buildLink( assetId = disqusSSOButton )#"
-				, icon   : "#event.buildLink( assetId = disqusSSOIcon )#"
-				, url    : "#disqusSSOLoginURL#"
-				, logout : "#disqusSSOLogoutURL#"
-				, width  : "#disqusSSOWidth#"
-				, height : "#disqusSSOHeight#"
-			};
-		</cfif>
+
 
 		(function() { // DON'T EDIT BELOW THIS LINE
 			var d = document, s = d.createElement('script');
