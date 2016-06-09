@@ -86,7 +86,7 @@ component {
 			, url       = arguments.url
 		}
 
-		var unixTimeStamp = dateConvert( "local2utc", now() ).getTime();
+		var unixTimeStamp = DateDiff( "s", CreateDate(1970,1,1), dateConvert( "local2utc", now() ) );
 		var userData      = SerializeJSON( loggedInUser );
 		var stgMessage    = ToBase64( userData ) & " " & unixTimeStamp;
 		var stgSignature  = HMAC( stgMessage, _getDisqusSettings().secret_key, "HmacSHA1"  );
