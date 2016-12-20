@@ -56,7 +56,7 @@ component {
 			return cachedValue;
 		}
 
-		var listPopular = getListPopular( limit = arguments.limit );
+		var listPopular = getListPopular( limit=arguments.limit, interval=arguments.interval );
 
 		_getDisqusAPICache().set( cacheKey, listPopular );
 
