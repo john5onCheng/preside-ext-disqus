@@ -9,7 +9,7 @@
     "documentation":"",
     "repository":{
         "type":"git",
-        "URL":"git://github.com/john5onCheng/preside-ext-disqus.git#v1.0.1"
+        "URL":"git://github.com/john5onCheng/preside-ext-disqus.git"
     },
     "slug":"preside-ext-disqus",
     "projectURL":"",
