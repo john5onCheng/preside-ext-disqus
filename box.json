@@ -1,0 +1,23 @@
+{
+    "name":"PresideCMS Extension: Disqus",
+    "version":"1.0.0",
+    "author":"Johnson Cheng",
+    "createPackageDirectory":true,
+    "directory":"application/extensions",
+    "packageDirectory":"preside-ext-disqus",
+    "homepage":"",
+    "documentation":"",
+    "repository":{
+        "type":"git",
+        "URL":"https://github.com/john5onCheng/preside-ext-disqus.git"
+    },
+    "slug":"preside-ext-disqus",
+    "projectURL":"",
+    "ignore":[
+        ".git/*",
+        ".gitignore",
+        ".travis.yml",
+        ".twgit_features_subject",
+        "test.sh"
+    ]
+}
