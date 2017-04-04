@@ -15,9 +15,6 @@
     "projectURL":"",
     "ignore":[
         ".git/*",
-        ".gitignore",
-        ".travis.yml",
-        ".twgit_features_subject",
-        "test.sh"
+        ".gitignore"
     ]
 }
