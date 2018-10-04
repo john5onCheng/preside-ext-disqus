@@ -7,6 +7,11 @@
 			<field name="api_key"     control="textinput" required="true"  default="" />
 			<field name="secret_key"  control="textinput" required="false" default="" />
 		</fieldset>
+		<fieldset id="oauth">
+			<field name="authorise_url"    control="textinput" required="true" default="https://disqus.com/api/oauth/2.0/authorize/"    />
+			<field name="access_token_url" control="textinput" required="true" default="https://disqus.com/api/oauth/2.0/access_token/" />
+			<field name="access_token"     control="disqusAccessToken" />
+		</fieldset>
 		<fieldset id="sso">
 			<field name="enable_sso"        control="yesnoswitch"   default="false" />
 			<field name="sso_site_name"     control="textinput"     default=""    />
