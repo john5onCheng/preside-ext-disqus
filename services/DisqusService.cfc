@@ -36,30 +36,83 @@ component {
 			}
 		);
 
-		if ( !isEmpty( result.responseHeader.status_code ?: "" ) ) {
-			return DeserializeJSON( result.fileContent ).response;
+		if ( result.success ) {
+			return result.response;
 		} else {
 			return [];
 		}
 	}
 
 	/**
+	 *  Method name : threads/open
+	 *  Reference   : https://disqus.com/api/docs/threads/open/
+	 */
+	public boolean function openThread( string threadId="", string threadIdentifier="" ) {
+		var params = {};
+		if ( len( arguments.threadId ) ) {
+			params[ "thread" ] = arguments.threadId;
+		} else if ( len( arguments.threadIdentifier ) ) {
+			params[ "thread:ident" ] = arguments.threadIdentifier;
+		} else {
+			return false;
+		}
+
+		var result = _callApi(
+			  method       = "POST"
+			, endpoint     = "threads/open.json"
+			, authenticate = true
+			, params       = params
+		);
+
+		return result.success;
+	}
+
+	/**
 	 *  Method name : threads/close
 	 *  Reference   : https://disqus.com/api/docs/threads/close/
 	 */
-	public boolean function closeComments( required string thread ) {
+	public boolean function closeThread( string threadId="", string threadIdentifier="" ) {
+		var params = {};
+		if ( len( arguments.threadId ) ) {
+			params[ "thread" ] = arguments.threadId;
+		} else if ( len( arguments.threadIdentifier ) ) {
+			params[ "thread:ident" ] = arguments.threadIdentifier;
+		} else {
+			return false;
+		}
+
 		var result = _callApi(
 			  method       = "POST"
 			, endpoint     = "threads/close.json"
 			, authenticate = true
-			, params       = { thread=arguments.thread }
+			, params       = params
 		);
 
-		if ( !isEmpty( result.responseHeader.status_code ?: "" ) ) {
-			return DeserializeJSON( result.fileContent ).response;
+		return result.success;
+	}
+
+	/**
+	 *  Method name : threads/remove
+	 *  Reference   : https://disqus.com/api/docs/threads/remove/
+	 */
+	public boolean function removeThread( string threadId="", string threadIdentifier="" ) {
+		var params = {};
+		if ( len( arguments.threadId ) ) {
+			params[ "thread" ] = arguments.threadId;
+		} else if ( len( arguments.threadIdentifier ) ) {
+			params[ "thread:ident" ] = arguments.threadIdentifier;
 		} else {
-			return [];
+			return false;
 		}
+
+		var result = _callApi(
+			  method       = "POST"
+			, endpoint     = "threads/remove.json"
+			, authenticate = true
+			, params       = params
+		);
+
+		return result.success;
 	}
 
 //CACHED PUBLIC METHODS
