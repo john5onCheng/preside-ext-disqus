@@ -37,7 +37,7 @@ component {
 	public struct function getStoredAccessToken() {
 		var settings    = _getDisqusSettings();
 		var accessToken = $getPresideObject( "disqus_access_token" ).selectData(
-			  filter       = { api_key=settings.api_key, secret_key=settings.secret_key }
+			  filter       = { api_key=settings.api_key ?: "", secret_key=settings.secret_key ?: "" }
 			, selectFields = [ "username", "access_token", "refresh_token", "expires" ]
 		);
 
