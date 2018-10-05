@@ -120,28 +120,31 @@ component {
 		,          string  method       = "GET"
 		,          boolean authenticate = false
 	){
-		var result       = "";
+		var result       = {};
+		var response     = "";
 		var success      = false;
 		var fullEndPoint = _getDisqusSettings().end_point & arguments.endpoint;
+		var forum        = _getDisqusSettings().short_name;
 		var api_key      = _getDisqusSettings().api_key;
-		var api_secret   = _getDisqusSettings().api_secret;
+		var secret_key   = _getDisqusSettings().secret_key;
 		var access_token = arguments.authenticate ? _getDisqusAuthService().getAccessToken() : "";
 
 		try {
-			http url=fullEndPoint method=arguments.method result="result" timeout=5 resolveurl=true {
+			http url=fullEndPoint method=arguments.method result="response" timeout=5 resolveurl=true {
+				httpparam name="forum"   value=forum   type="url";
 				httpparam name="api_key" value=api_key type="url";
 				if ( arguments.authenticate ) {
-					httpparam name="api_secret"   value=api_secret   type="url";
+					httpparam name="api_secret"   value=secret_key   type="url";
 					httpparam name="access_token" value=access_token type="url";
 				}
 				for( var param in arguments.params ) {
 					httpparam name=param value=arguments.params[ param ] type="url";
 				}
 			};
-
-			success = Len( Trim( result.responseHeader.status_code ?: "" ) );
+			result         = deserializeJson( response.fileContent );
+			result.success = ( result.code ?: "" ) == 0;
 		} catch( any e ) {
-			success = false;
+			result.success = false;
 			$raiseError( e );
 		}
 
