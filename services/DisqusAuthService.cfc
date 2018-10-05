@@ -88,7 +88,7 @@ component {
 	public any function getAuthUrl() {
 		var settings = _getDisqusSettings();
 		var params   = [
-			  "scope=read,write"
+			  "scope=read,write,admin"
 			, "response_type=code"
 			, "client_id=" & settings.api_key
 			, "redirect_uri=" & getRedirectUri()
