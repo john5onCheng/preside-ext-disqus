@@ -23,10 +23,7 @@ component {
 	 *  Method name : posts/listPopular
 	 *  Reference   : https://disqus.com/api/docs/posts/listPopular/
 	 */
-	public any function getListPopular(
-		  numeric limit    = 10
-		, string  interval = "90d"
-	) {
+	public any function getListPopular( numeric limit=10, string interval="90d"	) {
 		var result = _callApi(
 			  endpoint = "threads/listPopular.json"
 			, params   = {
@@ -44,8 +41,10 @@ component {
 	}
 
 	/**
-	 *  Method name : threads/open
-	 *  Reference   : https://disqus.com/api/docs/threads/open/
+	 *  Method name      : threads/open
+	 *  Reference        : https://disqus.com/api/docs/threads/open/
+	 *  threadId         : Disqus's internal ID of the thread. Use this OR threadIdentifier
+	 *  threadIdentifier : The unique ID of the page or content passed when embedding the Disqus comments. Use this OR threadId
 	 */
 	public boolean function openThread( string threadId="", string threadIdentifier="" ) {
 		var params = {};
@@ -68,8 +67,10 @@ component {
 	}
 
 	/**
-	 *  Method name : threads/close
-	 *  Reference   : https://disqus.com/api/docs/threads/close/
+	 *  Method name      : threads/close
+	 *  Reference        : https://disqus.com/api/docs/threads/close/
+	 *  threadId         : Disqus's internal ID of the thread. Use this OR threadIdentifier
+	 *  threadIdentifier : The unique ID of the page or content passed when embedding the Disqus comments. Use this OR threadId
 	 */
 	public boolean function closeThread( string threadId="", string threadIdentifier="" ) {
 		var params = {};
@@ -92,8 +93,10 @@ component {
 	}
 
 	/**
-	 *  Method name : threads/remove
-	 *  Reference   : https://disqus.com/api/docs/threads/remove/
+	 *  Method name      : threads/remove
+	 *  Reference        : https://disqus.com/api/docs/threads/remove/
+	 *  threadId         : Disqus's internal ID of the thread. Use this OR threadIdentifier
+	 *  threadIdentifier : The unique ID of the page or content passed when embedding the Disqus comments. Use this OR threadId
 	 */
 	public boolean function removeThread( string threadId="", string threadIdentifier="" ) {
 		var params = {};
