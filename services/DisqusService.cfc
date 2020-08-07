@@ -120,17 +120,31 @@ component {
 
 //CACHED PUBLIC METHODS
 	public array function getCachedPopularPostList(
-		  numeric limit    = 10
-		, string  interval = "90d"
+		  numeric limit        = 10
+		, string  interval     = "90d"
+		, boolean throwOnError = false
 	) {
-		var cacheKey    = "disqusPopularPostList" & serializeJSON( arguments );
+		var cacheArgs   = [ arguments.limit, arguments.interval ];
+		var cacheKey    = "disqusPopularPostList" & serializeJSON( cacheArgs );
 		var cachedValue = _getDisqusAPICache().get( cacheKey );
 
-		if ( !IsNull( cachedValue )  ) {
+		if ( !IsNull( cachedValue ) ) {
 			return cachedValue;
 		}
 
 		var listPopular = getListPopular( limit=arguments.limit, interval=arguments.interval );
+
+		if ( !isArray( listPopular ) ) {
+			if ( arguments.throwOnError ) {
+				throw(
+					  type    = "DisqusService.invalidPopularPostList"
+					, message = "The popular post list is not an array"
+					, detail  = "The popular post list, [#serializeJSON( listPopular )#], is not an array."
+				);
+			}
+
+			return [];
+		}
 
 		_getDisqusAPICache().set( cacheKey, listPopular );
 
