@@ -1,8 +1,12 @@
 <cfscript>
-	param name="args.showDisqus" default=true;
+	param name="args.showDisqus"       default=true;
+	param name="args.disqusUrl"        default=( prc.canoncialUrl     ?: "" );
+	param name="args.disqusIdentifier" default=( prc.disqusIdentifier ?: "" );
+	param name="args.disqusLoginToken" default=( prc.disqusLoginToken ?: "" );
 
-	canoncialURLExists     = !isEmpty( prc.canoncialURL     ?: '' );
-	disqusLoginTokenExists = !isEmpty( prc.disqusLoginToken ?: '' );
+	disqusUrlExists        = !isEmpty( args.disqusUrl        );
+	disqusIdentifierExists = !isEmpty( args.disqusIdentifier );
+	disqusLoginTokenExists = !isEmpty( args.disqusLoginToken );
 	disqusAPIKey           = getSystemSetting( "disqus", "api_key"       , '' );
 	isSSOEnabled           = getSystemSetting( "disqus", "enable_sso"    , false );
 	disqusSSOSiteName      = getSystemSetting( "disqus", "sso_site_name" , '' );
@@ -21,14 +25,16 @@
 <div id="disqus-wrap" class="disqus-wrap">
 	<div id="disqus_thread"></div>
 	<script>
-		<cfif canoncialURLExists || disqusLoginTokenExists >
-			var disqus_config        = function () {
-				 <cfif canoncialURLExists>
-					this.page.url        = "#prc.canoncialURL#";
-					this.page.identifier = "#prc.disqusIdentifier#";
+		<cfif disqusUrlExists || disqusIdentifierExists || disqusLoginTokenExists>
+			var disqus_config = function() {
+				<cfif disqusUrlExists>
+					this.page.url            = "#args.disqusUrl#";
+				</cfif>
+				<cfif disqusIdentifierExists>
+					this.page.identifier     = "#args.disqusIdentifier#";
 				</cfif>
 				<cfif disqusLoginTokenExists && isSSOEnabled == 1>
-					this.page.remote_auth_s3 = "#prc.disqusLoginToken#";
+					this.page.remote_auth_s3 = "#args.disqusLoginToken#";
 					this.page.api_key        = "#disqusAPIKey#";
 				</cfif>
 				<cfif isSSOEnabled == 1>
